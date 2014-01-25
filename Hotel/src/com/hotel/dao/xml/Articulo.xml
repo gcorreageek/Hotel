@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="articulo">
+	<select id="SQL_listaProductos" resultType="ArticuloBean">
+	    select prod.* from tb_articulo	prod  order by prod.cod_articulo
+	</select>  
+	<select id="SQL_listaProductosDescProducto" resultType="ArticuloBean" parameterType="ArticuloBean" >
+	    select prod.* from tb_articulo	prod where prod.desc_articulo like  #{desc_articulo} and prod.unidadMedida like #{unidadMedida} order by prod.cod_articulo
+	</select> 
+	<select id="SQL_listaProductosPaginados" resultType="ArticuloBean" parameterType="ArticuloBean"  >
+	    select prod.* from tb_articulo	prod  order by prod.cod_articulo  limit  #{inicio} ,  #{tamano}
+	</select>
+	<select id="SQL_listaProductosDescProductoPaginados" resultType="ArticuloBean" parameterType="ArticuloBean"  >
+	    select prod.* from tb_articulo	prod where prod.desc_articulo like  #{desc_articulo} and prod.unidadMedida like #{unidadMedida}  order by prod.cod_articulo  limit  #{inicio} ,  #{tamano}
+	</select>  
+	 
+	<select id="SQL_listaProductosIdProvee" resultType="ArticuloBean" parameterType="ArticuloBean" > 
+	    select prod.*  from tb_articulo	prod 
+		inner join tb_articulo_proveedor prod_prove on prod_prove.cod_articulo=prod.cod_articulo 
+		inner join tb_proveedor prove on prove.cod_proveedor=prod_prove.cod_proveedor
+		where prove.cod_proveedor=#{cod_proveedor}  order by prod.cod_articulo
+	</select>  
+	<select id="SQL_listaProductosDescProductoIdProvee" resultType="ArticuloBean" parameterType="ArticuloBean" >
+	    select prod.*  from tb_articulo	prod 
+		inner join tb_articulo_proveedor prod_prove on prod_prove.cod_articulo=prod.cod_articulo 
+		inner join tb_proveedor prove on prove.cod_proveedor=prod_prove.cod_proveedor
+	    where prove.cod_proveedor=#{cod_proveedor} and prod.desc_articulo like  #{desc_articulo}	  order by prod.cod_articulo
+	</select> 
+	<select id="SQL_listaProductosPaginadosIdProvee" resultType="ArticuloBean" parameterType="ArticuloBean"  >
+	    select prod.*  from tb_articulo	prod 
+		inner join tb_articulo_proveedor prod_prove on prod_prove.cod_articulo=prod.cod_articulo 
+		inner join tb_proveedor prove on prove.cod_proveedor=prod_prove.cod_proveedor
+		where prove.cod_proveedor=#{cod_proveedor} 
+	    order by prod.cod_articulo  limit  #{inicio} ,  #{tamano}
+	</select>
+	<select id="SQL_listaProductosDescProductoPaginadosIdProvee" resultType="ArticuloBean" parameterType="ArticuloBean"  >
+	    select prod.*  from tb_articulo	prod 
+		inner join tb_articulo_proveedor prod_prove on prod_prove.cod_articulo=prod.cod_articulo 
+		inner join tb_proveedor prove on prove.cod_proveedor=prod_prove.cod_proveedor
+	    where prove.cod_proveedor=#{cod_proveedor}  and prod.desc_articulo like  #{desc_articulo}	  order by prod.cod_articulo  limit  #{inicio} ,  #{tamano}
+	</select>
+	
+	<select id="SQL_registraProducto"  parameterType="ArticuloBean" >
+		insert into tb_articulo(desc_articulo,unidadMedida,tipo_articulo,stock_articulo,habilitado) values(#{desc_articulo},#{unidadMedida},#{tipo_articulo},#{stock_articulo},#{habilitado})
+	</select> 
+	<select id="SQL_getProductoXCodProd" resultType="ArticuloBean">
+	    select prod.* from tb_articulo	prod where prod.cod_articulo =  #{cod_articulo}	   
+	</select>
+	<select id="SQL_deleteProducto"  parameterType="ArticuloBean" >
+	delete from tb_articulo where cod_articulo = #{cod_articulo}  
+	</select> 
+	<select id="SQL_updateProducto"  parameterType="ArticuloBean" >
+	update tb_articulo set desc_articulo=#{desc_articulo} , unidadMedida=#{unidadMedida}, tipo_articulo=#{tipo_articulo},
+	habilitado=#{habilitado},stock_articulo=#{stock_articulo}
+	where cod_articulo = #{cod_articulo} 
+	</select> 
+	
+	
+	<select id="SQL_listaProductosPaginadosHabilitados" resultType="ArticuloBean" parameterType="ArticuloBean"  >
+	    select prod.* from tb_articulo	prod  where prod.habilitado='Habilitado' order by prod.cod_articulo  limit  #{inicio} ,  #{tamano}
+	</select>
+	
+	<select id="SQL_listaProductosDescProductoPaginadosHabilitados" resultType="ArticuloBean" parameterType="ArticuloBean"  >
+	    select prod.* from tb_articulo	prod where prod.habilitado='Habilitado' and prod.desc_articulo like  #{desc_articulo}	  order by prod.cod_articulo  limit  #{inicio} ,  #{tamano}
+	</select> 
+	
+	<select id="SQL_listaProductosHabilitados" resultType="ArticuloBean">
+	    select prod.* from tb_articulo	prod  where prod.habilitado='Habilitado' order by prod.cod_articulo
+	</select> 
+	
+	<select id="SQL_listaProductosDescProductoHabilitados" resultType="ArticuloBean">
+	    select prod.* from tb_articulo	prod where prod.habilitado='Habilitado' and prod.desc_articulo like  #{desc_articulo}	  order by prod.cod_articulo
+	</select> 
+	
+	<select id="SQL_listaProductosPaginadosIdProveeHabilitados" resultType="ArticuloBean" parameterType="ArticuloBean"  >
+	    select prod.*  from tb_articulo	prod 
+		inner join tb_articulo_proveedor prod_prove on prod_prove.cod_articulo=prod.cod_articulo 
+		inner join tb_proveedor prove on prove.cod_proveedor=prod_prove.cod_proveedor
+		where prove.cod_proveedor=#{cod_proveedor}  and prod.habilitado='Habilitado'
+	    order by prod.cod_articulo  limit  #{inicio} ,  #{tamano}
+	</select>
+	<select id="SQL_listaProductosDescProductoPaginadosIdProveeHabilitados" resultType="ArticuloBean" parameterType="ArticuloBean"  >
+	    select prod.*  from tb_articulo	prod 
+		inner join tb_articulo_proveedor prod_prove on prod_prove.cod_articulo=prod.cod_articulo 
+		inner join tb_proveedor prove on prove.cod_proveedor=prod_prove.cod_proveedor
+	    where prove.cod_proveedor=#{cod_proveedor} and prod.habilitado='Habilitado' and prod.desc_articulo like  #{desc_articulo}	  order by prod.cod_articulo  limit  #{inicio} ,  #{tamano}
+	</select>
+	
+	<select id="SQL_listaProductosIdProveeHabilitados" resultType="ArticuloBean" parameterType="ArticuloBean" > 
+	    select prod.*  from tb_articulo	prod 
+		inner join tb_articulo_proveedor prod_prove on prod_prove.cod_articulo=prod.cod_articulo 
+		inner join tb_proveedor prove on prove.cod_proveedor=prod_prove.cod_proveedor
+		where prove.cod_proveedor=#{cod_proveedor} and prod.habilitado='Habilitado' order by prod.cod_articulo
+	</select>  
+	<select id="SQL_listaProductosDescProductoIdProveeHabilitados" resultType="ArticuloBean" parameterType="ArticuloBean" >
+	    select prod.*  from tb_articulo	prod 
+		inner join tb_articulo_proveedor prod_prove on prod_prove.cod_articulo=prod.cod_articulo 
+		inner join tb_proveedor prove on prove.cod_proveedor=prod_prove.cod_proveedor
+	    where prove.cod_proveedor=#{cod_proveedor} and prod.habilitado='Habilitado' and prod.desc_articulo like  #{desc_articulo}	  order by prod.cod_articulo
+	</select>
+	
+	
+</mapper>

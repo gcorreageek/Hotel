@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pedidodetalle">  
+	<select id="SQL_registraDetallePedido"  parameterType="SolicitudReqDetalleBean" resultType="SolicitudReqDetalleBean"  >
+		insert into tb_solicitud_requerimiento_detalle(cod_solicitudRequerimiento,cod_articulo,cantidad) 
+		values(#{cod_solicitudRequerimiento},#{cod_articulo},#{cantidad})
+	</select> 
+	<select id="SQL_getDetallePedido"  parameterType="SolicitudReqDetalleBean" resultType="SolicitudReqDetalleBean"  >
+	    select ped.*,det.*,prod.* from tb_solicitud_requerimiento ped inner join tb_solicitud_requerimiento_detalle det
+		on det.cod_solicitudRequerimiento=ped.cod_solicitudRequerimiento
+		inner join tb_articulo prod
+		on prod.cod_articulo=det.cod_articulo
+		where ped.cod_solicitudRequerimiento=#{cod_solicitudRequerimiento}  
+		order by det.cod_detalleRequerimiento 
+	</select>
+	<select id="SQL_getDetallePedido1"   resultType="SolicitudReqDetalleBean"    >
+		select * from tb_solicitud_requerimiento_detalle where cod_detalleRequerimiento=#{cod_detalleRequerimiento} 
+	</select> 
+	
+	 
+	
+</mapper>

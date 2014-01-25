@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<typeAlias alias="TrabajadorBean" type="com.hotel.seguridad.bean.TrabajadorDTO" />
+		<typeAlias alias="AreaBean" type="com.hotel.seguridad.bean.AreaDTO" />
+		<typeAlias alias="CargoBean" type="com.hotel.seguridad.bean.CargoDTO" />		    
+	 	<typeAlias alias="MenuBean" type="com.hotel.seguridad.bean.MenuDTO" /> 
+	 	<typeAlias alias="AccesoBean" type="com.hotel.seguridad.bean.AccesoMenuDTO" /> 
+	 	<typeAlias alias="ArticuloBean" type="com.hotel.mantenimiento.bean.ArticuloDTO" /> 
+	 	<typeAlias alias="ProveedorBean" type="com.hotel.mantenimiento.bean.ProveedorDTO" /> 
+	 	<typeAlias alias="ArticuloProveedorBean" type="com.hotel.mantenimiento.bean.ArticuloProveedorDTO" /> 
+	 	<typeAlias alias="SolicitudReqBean" type="com.hotel.solicitudreq.bean.SolicitudReqDTO" /> 
+	 	<typeAlias alias="SolicitudReqDetalleBean" type="com.hotel.solicitudreq.bean.DetalleSolicitudReqDTO" />
+	 	<typeAlias alias="CotizacionBean" type="com.hotel.cotizacion.bean.CotizacionDTO" />
+	 	<typeAlias alias="CotizacionDetalleBean" type="com.hotel.cotizacion.bean.CotizacionDetalleDTO" /> 
+	 	<typeAlias alias="OrdenCompraBean" type="com.hotel.ordencompra.bean.OrdenCompraDTO" />
+	 	<typeAlias alias="OrdenCompraDetalleBean" type="com.hotel.ordencompra.bean.OrdenCompraDetalleDTO" /> 
+	 	<typeAlias alias="InformeInternoBean" type="com.hotel.informeinterno.bean.InformeInternoDTO" />
+	 	<typeAlias alias="InformeInternoDetalleBean" type="com.hotel.informeinterno.bean.InformeInternoDetalleDTO" /> 
+	 	<typeAlias alias="InformeExternoBean" type="com.hotel.informeexterno.bean.InformeExternoDTO" />
+	 	<typeAlias alias="InformeExternoDetalleBean" type="com.hotel.informeexterno.bean.InformeExternoDetalleDTO" /> 
+	</typeAliases> 
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />			
+			<dataSource type="UNPOOLED"> 
+						<property name="driver" value="com.mysql.jdbc.Driver" />
+						<property name="url" value="jdbc:mysql://localhost:3306/bd_hotel" />
+						<property name="username" value="root" /> 
+						<property name="password" value="mysql" />  
+			</dataSource>
+		</environment>
+	</environments>
+	 
+	<mappers>					
+		 <mapper resource="com/hotel/dao/xml/Trabajador.xml" />
+		 <mapper resource="com/hotel/dao/xml/Menu.xml" /> 
+		 <mapper resource="com/hotel/dao/xml/Acceso.xml" /> 
+		 <mapper resource="com/hotel/dao/xml/Cargo.xml" /> 
+		 <mapper resource="com/hotel/dao/xml/Area.xml" /> 
+		 <mapper resource="com/hotel/dao/xml/Articulo.xml" /> 
+		 <mapper resource="com/hotel/dao/xml/Proveedor.xml" /> 
+		 <mapper resource="com/hotel/dao/xml/ArticuloProveedor.xml" />
+		 <mapper resource="com/hotel/dao/xml/SolicitudReq.xml" />
+		 <mapper resource="com/hotel/dao/xml/SolicitudReqDetalle.xml" />
+		 <mapper resource="com/hotel/dao/xml/Cotizacion.xml" />
+		 <mapper resource="com/hotel/dao/xml/CotizacionDetalle.xml" />
+		 <mapper resource="com/hotel/dao/xml/OrdenCompra.xml" />
+		 <mapper resource="com/hotel/dao/xml/OrdenCompraDetalle.xml" />
+		 <mapper resource="com/hotel/dao/xml/InformeInterno.xml" />
+		 <mapper resource="com/hotel/dao/xml/InformeInternoDetalle.xml" />
+		 <mapper resource="com/hotel/dao/xml/InformeExterno.xml" />
+		 <mapper resource="com/hotel/dao/xml/InformeExternoDetalle.xml" />
+	</mappers>
+</configuration>
+
